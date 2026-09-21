@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>АТС Малиновка × Материк — Партнёрская экосистема загородного девелопмента</title>
+
+  <!-- Google Fonts: Cormorant Garamond & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Стили презентации -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       ВЕРХНЯЯ ПАНЕЛЬ (TOPBAR)
+       ======================================================================== -->
+  <header class="topbar">
+    <!-- Линия общего прогресса презентации -->
+    <div class="topbar-progress-wrap">
+      <div class="topbar-progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- Левая колонка: кобрендинг АТС Малиновка × Материк -->
+    <div class="topbar-left">
+      <div class="brand-combo">
+        <div class="brand-malinovka">
+          <!-- Архитектурный символ дома / очага девелопера -->
+          <svg class="brand-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 10L12 3L21 10V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V10Z"/>
+            <path d="M9 21V12H15V21"/>
+          </svg>
+          <span class="brand-name">АТС МАЛИНОВКА</span>
+        </div>
+        <div class="brand-divider"></div>
+        <div class="brand-materik">
+          <span class="brand-badge">МАТЕРИК</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Центральная колонка: индикатор текущего раздела -->
+    <div class="topbar-center">
+      <span class="slide-title-indicator" id="slideTitleIndicator">Введение · Стратегический альянс</span>
+    </div>
+
+    <!-- Правая колонка: кнопка полноэкранного режима и кнопка оглавления -->
+    <div class="topbar-right">
+      <button type="button" class="btn-icon-nav" id="btnFullscreen" title="Полноэкранный режим">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+        <span>Экран</span>
+      </button>
+
+      <button type="button" class="btn-icon-nav" id="btnOpenDrawer" title="Открыть оглавление">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
+        <span>Разделы</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       КОНТЕЙНЕР СЛАЙДЕРА (PRESENTATION WRAPPER)
+       ======================================================================== -->
+  <main class="presentation-wrap">
+    <div class="slides-viewport">
+
+      <!-- ====================================================================
+           СЛАЙД 1: ВВЕДЕНИЕ · СТРАТЕГИЧЕСКИЙ АЛЬЯНС (HERO CIRCUIT)
+           ==================================================================== -->
+      <section class="slide active slide-hero" data-index="0">
+        <!-- Интерактивный Canvas партнерских связей (Малиновка + Материк) -->
+        <canvas id="heroNetworkCanvas" class="hero-canvas-bg"></canvas>
+
+        <div class="slide-container">
+          <div class="hero-content">
+            <!-- Брендовый бейдж с силуэтом двускатных крыш (Roofline) -->
+            <div style="display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+              <span class="tag-pill blue">Стратегическое партнерство</span>
+              <svg viewBox="0 0 96 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 54px; height: 14px; color: var(--ats-primary);">
+                <path d="M4 20L28 4L52 20L68 10L92 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <h1 class="slide-heading">
+              Монетизация загородного трафика покупателей сети <span class="blue-accent">«Материк»</span>
+            </h1>
+
+            <p class="slide-lead">
+              Зарабатывайте <strong>до 4% (до 680 000 ₽ с одной сделки — готовый дом в КП «Елизаветинское» за 17 000 000 ₽)</strong> на рекомендации проверенных земельных участков и домов загородного девелопера «АТС Малиновка» покупателям стройматериалов. <em>0 ₽ затрат, 0 операционных рисков</em> и гарантированное возвращение 100% чека на материалы обратно в гипермаркеты сети.
+            </p>
+
+            <div class="hero-cta-row">
+              <button type="button" class="btn-primary" onclick="window.presentationSlider.next()">
+                <span>Смотреть презентацию →</span>
+              </button>
+              <button type="button" class="btn-secondary" onclick="openModal('drawerModal')">
+                <span>Оглавление (10 слайдов)</span>
+              </button>
+            </div>
+
+            <!-- Строка ключевых показателей -->
+            <div class="hero-stats-row">
+              <div class="hero-stat-card">
+                <div class="hero-stat-val">4%</div>
+                <div class="hero-stat-lbl">Комиссия с каждой сделки (до 680 000 ₽)</div>
+              </div>
+              <div class="hero-stat-card">
+                <div class="hero-stat-val blue">5</div>
+                <div class="hero-stat-lbl">Коттеджных посёлков в Ленинградской обл.</div>
+              </div>
+              <div class="hero-stat-card">
+                <div class="hero-stat-val green">100%</div>
+                <div class="hero-stat-lbl">Возврат клиента в «Материк» за стройматериалами</div>
+              </div>
+              <div class="hero-stat-card">
+                <div class="hero-stat-val">0 ₽</div>
+                <div class="hero-stat-lbl">Затрат на запуск, маркетинг и персонал</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           СЛАЙД 2: 01 · ОТ КОНТРАГЕНТОВ К ПАРТНЁРАМ
+           ==================================================================== -->
+      <section class="slide" data-index="1">
+        <div class="slide-container">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 4px;">
+            <span class="tag-pill">Новый этап сотрудничества</span>
+            <!-- Декоративный Roofline разделитель -->
+            <svg viewBox="0 0 96 24" fill="none" style="width: 48px; height: 12px; color: var(--ats-primary);">
+              <path d="M4 20L28 4L52 20L68 10L92 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+
+          <h2 class="slide-heading">Следующий этап: от контрагентов — <em>к полноценным партнёрам</em></h2>
+          <p class="slide-lead">
+            Мы уже строим дома из материалов сети «Материк» — первый современный дом успешно реализован в нашем посёлке Sawoda. Качество материалов проверено на практике, и теперь пора сделать следующий логичный шаг: перейти от стандартных отношений контрагентов к масштабному партнёрству и взаимной монетизации клиентского трафика.
+          </p>
+
+          <div class="grid-cards grid-3">
+            <!-- Карточка 1: Фасад дома в Sawoda -->
+            <div class="card-box">
+              <div style="height: 165px; border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 14px; position: relative;">
+                <img src="assets/sawoda-facade.jpg" alt="Реализованный дом в КП Sawoda — фасад" style="width: 100%; height: 100%; object-fit: cover; object-position: center 45%;">
+                <span style="position: absolute; top: 10px; left: 10px; background: var(--settlement-sawoda); color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 3px 9px; border-radius: var(--radius-pill); text-transform: uppercase; letter-spacing: 0.05em;">КП Sawoda · Фасад</span>
+              </div>
+              <h3 class="card-title">Реализованный объект в Sawoda</h3>
+              <p class="card-desc">
+                Первый дом девелопера уже построен с применением материалов из сети «Материк»: газобетон, кровля, фасадные покрытия и изоляция подтвердили надёжность и долговечность.
+              </p>
+            </div>
+
+            <!-- Карточка 2: Интерьер кухни-гостиной в Sawoda -->
+            <div class="card-box">
+              <div style="height: 165px; border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 14px; position: relative;">
+                <img src="assets/sawoda-interior.jpg" alt="Интерьер гостиной дома в КП Sawoda" style="width: 100%; height: 100%; object-fit: cover;">
+                <span style="position: absolute; top: 10px; left: 10px; background: var(--settlement-sawoda); color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 3px 9px; border-radius: var(--radius-pill); text-transform: uppercase; letter-spacing: 0.05em;">КП Sawoda · Интерьер</span>
+              </div>
+              <h3 class="card-title">Проверенное качество на практике</h3>
+              <p class="card-desc">
+                Просторная кухня-гостиная со вторым светом и панорамным остеклением. Мы на практике убедились в качестве вашего ассортимента и закладываем его в проектные решения девелопера.
+              </p>
+            </div>
+
+            <!-- Карточка 3: Терраса и зоны отдыха в Sawoda -->
+            <div class="card-box">
+              <div style="height: 165px; border-radius: var(--radius-sm); overflow: hidden; margin-bottom: 14px; position: relative;">
+                <img src="assets/sawoda-terrace.jpg" alt="Крытая терраса дома в КП Sawoda" style="width: 100%; height: 100%; object-fit: cover;">
+                <span style="position: absolute; top: 10px; left: 10px; background: var(--settlement-sawoda); color: #FFFFFF; font-size: 0.72rem; font-weight: 600; padding: 3px 9px; border-radius: var(--radius-pill); text-transform: uppercase; letter-spacing: 0.05em;">КП Sawoda · Терраса</span>
+              </div>
+              <h3 class="card-title">От поставок — к синергии</h3>
+              <p class="card-desc">
+                Наш опыт совместной работы доказал надёжность поставок. Следующий шаг — объединить усилия в продажах: рекомендовать посёлки покупателям «Материка» и монетизировать взаимный трафик с комиссией до 680 000 ₽ за сделку.
+              </p>
+            </div>
+          </div>
+
+          <!-- Декоративный центрированный разделитель с линией -->
+          <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 24px;">
+            <div style="height: 1px; background: var(--ats-border); width: 48px;"></div>
+            <svg viewBox="0 0 32 32" fill="none" style="width: 22px; height: 22px; color: var(--ats-primary);">
+              <path d="M4 24L16 6L28 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M11 24V13.5H21V24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div style="height: 1px; background: var(--ats-border); width: 48px;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           СЛАЙД 3: 02 · НЕРАСКРЫТЫЙ ПОТЕНЦИАЛ БАЗЫ
+           ==================================================================== -->
+      <section class="slide" data-index="2">
+        <div class="slide-container">
+          <span class="tag-pill blue">Анализ покупательского трафика</span>
+          <h2 class="slide-heading">Покупатели стройматериалов уже ищут землю и <span class="blue-accent">подряд на дом</span></h2>
+          <p class="slide-lead">
+            Каждый день тысячи людей посещают гипермаркеты «Материк». Покупая материалы для ремонта или дачи, многие из них находятся на пороге приобретения загородной недвижимости. Сейчас сеть зарабатывает только розничную наценку, упуская миллионную маржу девелопмента.
+          </p>
+
+          <div class="grid-cards grid-3">
+            <div class="card-box blue-border">
+              <div class="card-header">
+                <div class="card-icon-wrap blue">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+                    <line x1="3" y1="6" x2="21" y2="6"/>
+                    <path d="M16 10a4 4 0 0 1-8 0"/>
+                  </svg>
+                </div>
+                <span class="tag-pill blue" style="margin: 0; font-size: 0.7rem;">Чек > 100 000 ₽</span>
+              </div>
+              <h3 class="card-title">Прямые строители загородных домов</h3>
+              <p class="card-desc">
+                Клиенты, закупающие кровельные материалы, пиломатериалы, фасадные плиты, септики или электрику на крупные чеки — это прямые владельцы участков или заказчики загородного строительства.
+              </p>
+            </div>
+
+            <div class="card-box">
+              <div class="card-header">
+                <div class="card-icon-wrap">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                  </svg>
+                </div>
+                <span class="tag-pill" style="margin: 0; font-size: 0.7rem;">Квартирный ремонт</span>
+              </div>
+              <h3 class="card-title">Горожане в поиске дачи выходного дня</h3>
+              <p class="card-desc">
+                Покупатели товаров для интерьера, сантехники и сада регулярно интересуются покупкой дачи или коттеджа в радиусе 40 минут от КАД. Им нужен понятный импульс и рекомендация надежного девелопера.
+              </p>
+            </div>
+
+            <div class="card-box">
+              <div class="card-header">
+                <div class="card-icon-wrap green">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="1" x2="12" y2="23"/>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                  </svg>
+                </div>
+                <span class="tag-pill green" style="margin: 0; font-size: 0.7rem;">Сверхмаржинальность</span>
+              </div>
+              <h3 class="card-title">Упущенная маржинальность ритейла</h3>
+              <p class="card-desc">
+                Розничная маржа на стройматериалы ограничена логистикой, складами и операционными издержками. Рекомендация «АТС Малиновка» приносит до 680 000 ₽ чистой прибыли при нулевой себестоимости.
+              </p>
+            </div>
+          </div>
+
+          <!-- Сравнительная плашка -->
+          <div class="card-box" style="margin-top: 18px; background: linear-gradient(135deg, rgba(0, 73, 144, 0.04) 0%, rgba(192, 122, 86, 0.06) 100%); border-color: rgba(0, 73, 144, 0.2);">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+              <div style="flex: 1; min-width: 260px;">
+                <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--materik-blue); letter-spacing: 0.06em;">Обычный чек стройматериалов</span>
+                <p style="font-size: 0.95rem; color: var(--ats-text); margin-top: 2px;">Чек 150 000 ₽ → валовая маржа ~25 000 ₽ (минус склад, персонал, возвраты)</p>
+              </div>
+              <div style="width: 2px; height: 36px; background: var(--ats-border); display: inline-block;"></div>
+              <div style="flex: 1.2; min-width: 280px;">
+                <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--ats-primary); letter-spacing: 0.06em;">Партнерство с «АТС Малиновка»</span>
+                <p style="font-size: 0.95rem; color: var(--ats-text); margin-top: 2px;">Сделка на дом 17 млн ₽ (дом в КП «Елизаветинское») → комиссия 4% = <strong>680 000 ₽ чистой прибыли на р/с</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           СЛАЙД 4: 03 · НОЛЬ РАСХОДОВ И РИСКОВ (ГИГАНТСКИЙ НОЛЬ)
+           ==================================================================== -->
+      <section class="slide" data-index="3">
+        <div class="slide-container">
+          <span class="tag-pill">Безусловная безопасность</span>
+          <h2 class="slide-heading">Никаких операционных расходов для <em>«Материка»</em></h2>
+          <p class="slide-lead">
+            Партнерство не требует расширения штата, найма риелторов, изменения кассовых регламентов или выделения маркетингового бюджета. Мы берем на себя 100% клиентского пути.
+          </p>
+
+          <div class="zero-slide-box">
+            <div class="zero-layout">
+              <!-- Визуальный акцент: гигантский 0 -->
+              <div class="zero-hero-visual">
+                <div class="giant-zero">0 ₽</div>
+                <div class="giant-zero-sub">Затрат с вашей стороны</div>
+                <div class="giant-zero-caption">0 сотрудников в штат · 0 рисков · 0 ₽ на маркетинг</div>
+              </div>
+
+              <!-- Сетка из 4 защитных гарантий -->
+              <div class="zero-bullets-grid">
+                <div class="zero-bullet-card">
+                  <span class="zero-bullet-num">01</span>
+                  <div>
+                    <h4 class="zero-bullet-title">Без найма специалистов</h4>
+                    <p class="zero-bullet-desc">Все консультации, подбор участков, трансфер, показы на объектах и регистрацию в Росреестре проводит штатный отдел продаж девелопера.</p>
+                  </div>
+                </div>
+
+                <div class="zero-bullet-card">
+                  <span class="zero-bullet-num">02</span>
+                  <div>
+                    <h4 class="zero-bullet-title">Базовые промо-материалы</h4>
+                    <p class="zero-bullet-desc">Предоставим буклеты о посёлках и рекламные макеты полностью за наш счёт — без каких-либо расходов и хлопот с вашей стороны.</p>
+                  </div>
+                </div>
+
+                <div class="zero-bullet-card">
+                  <span class="zero-bullet-num">03</span>
+                  <div>
+                    <h4 class="zero-bullet-title">Официальный агентский договор</h4>
+                    <p class="zero-bullet-desc">Юридически выверенные белые выплаты на расчетный счет сети «Материк» в течение 3 банковских дней после закрытия сделки клиентом.</p>
+                  </div>
+                </div>
+
+                <div class="zero-bullet-card">
+                  <span class="zero-bullet-num">04</span>
+                  <div>
+                    <h4 class="zero-bullet-title">Цифровая прозрачность MalinaFix</h4>
+                    <p class="zero-bullet-desc">Онлайн-контроль каждого переданного лида в личном кабинете: фиксация контакта, статус звонка, запись на показ и расчет начисленного бонуса.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           СЛАЙД 5: 04 · 3 ФОРМАТА РЕКОМЕНДАЦИЙ
+           ==================================================================== -->
+      <section class="slide" data-index="4">
+        <div class="slide-container">
+          <span class="tag-pill blue">Каналы дистрибуции</span>
+          <h2 class="slide-heading">3 формата рекомендаций под инфраструктуру <span class="blue-accent">«Материка»</span></h2>
+          <p class="slide-lead">
+            Интегрируйте партнерскую программу бесшовно в существующие точки контакта с аудиторией: торговый зал гипермаркета, цифровую программу лояльности или корпоративный оптовый отдел.
+          </p>
+
+          <div class="grid-cards grid-3">
+            <!-- Формат 1 -->
+            <div class="card-box">
+              <div class="card-header">
+                <div class="card-icon-wrap blue">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
+                </div>
+                <span class="tag-pill blue" style="margin: 0; font-size: 0.7rem;">Оффлайн-ритейл</span>
+              </div>
+              <h3 class="card-title">Формат 1 · Торговый зал гипермаркета</h3>
+              <p class="card-desc">
+                Стильные информационные стойки в отделах кровли, фасадов, пиломатериалов и сада. Консультанты вручают сертификат на 100 000 ₽ на покупку участка с уникальным промокодом магазина или сотрудника.
+              </p>
+              <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--ats-border); font-size: 0.8rem; color: var(--ats-text-secondary);">
+                <div>✓ Брендированные стойки и буклеты</div>
+                <div>✓ Сертификат новосела на 100 000 ₽ в подарок</div>
+                <div>✓ Мотивационная премия консультантам</div>
+              </div>
+            </div>
+
+            <!-- Формат 2 -->
+            <div class="card-box blue-border">
+              <div class="card-header">
+                <div class="card-icon-wrap">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </div>
+                <span class="tag-pill" style="margin: 0; font-size: 0.7rem;">CRM & Digital</span>
+              </div>
+              <h3 class="card-title">Формат 2 · База программы лояльности</h3>
+              <p class="card-desc">
+                Таргетированная рассылка (Email, SMS, Push в приложении «Материк») по сегменту клиентов с чеком от 100 000 ₽ или историей загородных покупок. Ссылка ведет на кобрендинговый лендинг с автофиксацией номера.
+              </p>
+              <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--ats-border); font-size: 0.8rem; color: var(--ats-text-secondary);">
+                <div>✓ Проверенные конверсионные шаблоны</div>
+                <div>✓ Моментальное закрепление лида по ссылке</div>
+                <div>✓ Масштабируемый охват всей базы сети</div>
+              </div>
+            </div>
+
+            <!-- Формат 3 -->
+            <div class="card-box">
+              <div class="card-header">
+                <div class="card-icon-wrap green">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </div>
+                <span class="tag-pill green" style="margin: 0; font-size: 0.7rem;">B2B & Прорабы</span>
+              </div>
+              <h3 class="card-title">Формат 3 · Оптовый B2B-отдел</h3>
+              <p class="card-desc">
+                Менеджеры оптового отдела рекомендуют поселки «АТС Малиновка» строительным бригадам, подрядчикам и прорабам, которым заказчики поручили поиск земельного участка под дом.
+              </p>
+              <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--ats-border); font-size: 0.8rem; color: var(--ats-text-secondary);">
+                <div>✓ Высокий средний чек (подряды 11–15 млн ₽)</div>
+                <div>✓ Быстрый цикл принятия решений</div>
+                <div>✓ Лояльность подрядчиков к «Материку»</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           СЛАЙД 6: 05 · ПЛАТФОРМА MALINAFIX
+           ==================================================================== -->
+      <section class="slide" data-index="5">
+        <div class="slide-container">
+          <span class="tag-pill">Партнёрская экосистема</span>
+          <h2 class="slide-heading">Личный кабинет партнёра <em>MalinaFix</em></h2>
+          <p class="slide-lead">
+            Прозрачный онлайн-инструмент для мгновенной фиксации клиентов и отслеживания каждого этапа сделки. Исключает любые разногласия и гарантирует выплату комиссионных.
+          </p>
+
+          <div class="malinafix-wrap">
+            <!-- Левая колонка: интерактивный превью-блок со скриншотами платформы -->
+            <div class="malinafix-preview-card">
+              <div class="preview-tabs-bar">
+                <div class="preview-tabs">
+                  <button type="button" class="tab-btn active" data-target-img="assets/malinafix-dashboard.png" data-alt-text="Дашборд партнёра: аналитика лидов, воронка и начисленные комиссии">
+                    Обзор дашборда
+                  </button>
+                  <button type="button" class="tab-btn" data-target-img="assets/malinafix-modal.png" data-alt-text="Окно фиксации клиента: закрепление номера телефона и проверка дублей">
+                    Фиксация клиента
+                  </button>
+                </div>
+                <span style="font-size: 0.75rem; color: var(--ats-text-muted);">Кликните для увеличения 🔍</span>
+              </div>
+
+              <div class="preview-image-container">
+                <img id="malinafixPreviewImg" src="assets/malinafix-dashboard.png" alt="Дашборд партнёра: аналитика лидов, воронка и начисленные комиссии" class="preview-image">
+                <div class="zoom-badge">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                    <path d="M11 8v6M8 11h6"/>
+                  </svg>
+                  <span>Нажмите для зума</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Правая колонка: 4 ключевых преимущества экосистемы -->
+            <div class="malinafix-points">
+              <div class="point-card">
+                <div class="point-card-title">
+                  <span style="color: var(--ats-primary);">🔒</span>
+                  <span>Защита сделки за вами на 90 дней</span>
+                </div>
+                <p class="point-card-desc">
+                  Номер телефона покупателя мгновенно закрепляется в CRM за «Материком». Даже если клиент вернется к покупке через 2 месяца — 100% комиссии будет начислено вам.
+                </p>
+              </div>
+
+              <div class="point-card">
+                <div class="point-card-title">
+                  <span style="color: var(--materik-blue);">⚡</span>
+                  <span>Фиксация лида за 15 секунд</span>
+                </div>
+                <p class="point-card-desc">
+                  Консультанту достаточно ввести имя и контактный телефон клиента. Возможна прямая интеграция по API или вебхукам с вашей CRM.
+                </p>
+              </div>
+
+              <div class="point-card">
+                <div class="point-card-title">
+                  <span style="color: var(--ats-secondary);">📊</span>
+                  <span>Прозрачная воронка статусов</span>
+                </div>
+                <p class="point-card-desc">
+                  Отслеживайте движение лида онлайн: «Взят в работу» → «Выезд на показ» → «Бронь участка» → «Оплата» → «Выплата комиссии».
+                </p>
+              </div>
+
+              <div class="point-card">
+                <div class="point-card-title">
+                  <span style="color: var(--ats-primary);">💼</span>
+                  <span>Безналичный расчет и закрывающие акты</span>
+                </div>
+                <p class="point-card-desc">
+                  Автоматическая генерация отчетов агента и бухгалтерских актов. Выплата комиссионных на расчетный счет юрлица в течение 3 рабочих дней.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           СЛАЙД 7: 06 · ЭКОНОМИКА КОМИССИЙ 4%
+           ==================================================================== -->
+      <section class="slide" data-index="6" data-has-counters="true">
+        <div class="slide-container">
+          <span class="tag-pill green">Юнит-экономика партнерства</span>
+          <h2 class="slide-heading">
+            До <span class="metric-number" data-target="680000" data-suffix=" ₽">680 000 ₽</span> чистой прибыли <em>с одной рекомендации</em>
+          </h2>
+          <p class="slide-lead">
+            Честная ставка 4% от полной стоимости договора без скрытых вычетов. Сравните: чтобы заработать 680 000 ₽ чистой прибыли на рознице стройматериалов, нужно реализовать товаров на 4.5–6 млн ₽.
+          </p>
+
+          <div class="grid-cards grid-3">
+            <!-- Продукт 1 -->
+            <div class="card-box blue-border">
+              <div class="card-header">
+                <span class="tag-pill blue" style="margin: 0;">Максимальный доход</span>
+                <span style="font-size: 0.8rem; color: var(--ats-text-secondary); font-weight: 600;">Чек 17 000 000 ₽</span>
+              </div>
+              <h3 class="card-title">Готовый дом в КП «Елизаветинское»</h3>
+              <div class="hero-stat-val" style="font-size: 2.3rem; margin: 8px 0;">
+                <span class="metric-number" data-target="680000" data-suffix=" ₽">680 000 ₽</span>
+              </div>
+              <p class="card-desc">
+                Семейная усадьба бизнес-класса с подключенными инженерными сетями и готовым ландшафтом в КП «Елизаветинское». Честная комиссия 4% — 680 000 ₽ с одной продажи.
+              </p>
+            </div>
+
+            <!-- Продукт 2 -->
+            <div class="card-box">
+              <div class="card-header">
+                <span class="tag-pill" style="margin: 0;">Высокий спрос</span>
+                <span style="font-size: 0.8rem; color: var(--ats-text-secondary); font-weight: 600;">Чек 11 000 000 ₽</span>
+              </div>
+              <h3 class="card-title">Строительный подряд под ключ</h3>
+              <div class="hero-stat-val blue" style="font-size: 2.3rem; margin: 8px 0;">
+                <span class="metric-number" data-target="440000" data-suffix=" ₽">440 000 ₽</span>
+              </div>
+              <p class="card-desc">
+                Индивидуальный или типовой проект дома от аккредитованных подрядчиков «АТС Малиновка». Гарантия 5 лет, эскроу-безопасность, льготная ипотека от 6%.
+              </p>
+            </div>
+
+            <!-- Продукт 3 -->
+            <div class="card-box">
+              <div class="card-header">
+                <span class="tag-pill green" style="margin: 0;">Быстрый цикл</span>
+                <span style="font-size: 0.8rem; color: var(--ats-text-secondary); font-weight: 600;">Чек 3 500 000 ₽</span>
+              </div>
+              <h3 class="card-title">Земельный участок ИЖС</h3>
+              <div class="hero-stat-val green" style="font-size: 2.3rem; margin: 8px 0;">
+                <span class="metric-number" data-target="140000" data-suffix=" ₽">140 000 ₽</span>
+              </div>
+              <p class="card-desc">
+                Участок с центральными коммуникациями (магистральный газ, электричество 15 кВт, водопровод, асфальт). Идеальный первый шаг для загородного строительства.
+              </p>
+            </div>
+          </div>
+
+          <!-- Баннер сопутствующих услуг -->
+          <div class="card-box" style="margin-top: 18px; background: linear-gradient(135deg, rgba(192, 122, 86, 0.05) 0%, rgba(0, 73, 144, 0.05) 100%); border-color: rgba(192, 122, 86, 0.25);">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+              <div>
+                <h4 style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 700; color: var(--ats-text); margin-bottom: 4px;">
+                  Дополнительный доход от кросс-продаж сопутствующих услуг
+                </h4>
+                <p style="font-size: 0.85rem; color: var(--ats-text-secondary); margin: 0;">
+                  Trade-in городской квартиры клиента и чистовой ремонт дома под ключ приносят партнеру дополнительно <strong>до +260 000 ₽</strong> к основной комиссии.
+                </p>
+              </div>
+              <div style="text-align: right;">
+                <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--ats-text-muted); display: block; font-weight: 600;">Кросс-продажи</span>
+                <span style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; color: var(--ats-primary);">+260 000 ₽ / сделка</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           СЛАЙД 8: 07 · ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР ДОХОДА
+           ==================================================================== -->
+      <section class="slide" data-index="7">
+        <div class="slide-container">
+          <span class="tag-pill blue">Финансовая модель</span>
+          <h2 class="slide-heading">Калькулятор дохода сети <span class="blue-accent">«Материк»</span></h2>
+          <p class="slide-lead">
+            Оцените потенциал партнерства: настройте объем целевых контактов покупателей и выберите конверсионный сценарий охвата.
+          </p>
+
+          <div class="calc-wrapper">
+            <div class="calc-grid">
+              <!-- Левая колонка: элементы управления (инпуты) -->
+              <div class="calc-controls-col">
+                <div class="calc-control-group">
+                  <div class="control-label-row">
+                    <span class="control-label">Объем контактов покупателей в выборке:</span>
+                    <span class="control-value-display"><span id="calcContactsVal">2 000</span> чел.</span>
+                  </div>
+                  <input type="range" class="range-slider" id="calcContactsRange" min="500" max="10000" step="250" value="2000">
+                  <div class="range-scale-labels">
+                    <span>500</span>
+                    <span>2 500</span>
+                    <span>5 000</span>
+                    <span>7 500</span>
+                    <span>10 000 контактов</span>
+                  </div>
+                </div>
+
+                <div class="calc-control-group">
+                  <span class="control-label">Сценарий конверсии базы:</span>
+                  <div class="scenario-selector">
+                    <button type="button" class="scenario-btn active" data-scenario="realistic">
+                      Базовый (1.7 сделки / 1 000)
+                    </button>
+                    <button type="button" class="scenario-btn" data-scenario="optimized">
+                      Оптимизированный (3.0 сделки / 1 000)
+                    </button>
+                  </div>
+                </div>
+
+                <label class="calc-checkbox-row">
+                  <input type="checkbox" id="calcCrossSell">
+                  <span class="calc-checkbox-label">Учитывать сопутствующие услуги (Trade-in + чистовой ремонт под ключ)</span>
+                </label>
+              </div>
+
+              <!-- Правая колонка: итоговый расчет дохода -->
+              <div class="calc-results-box">
+                <div class="calc-hero-metric">
+                  <div class="metric-hero-label">Прогнозируемый доход сети «Материк»</div>
+                  <div class="metric-hero-value" id="calcHeroRevenue">1 608 000 ₽</div>
+                </div>
+
+                <div class="calc-metrics-row">
+                  <div class="sub-metric-card">
+                    <div class="sub-metric-label">Закрытых сделок</div>
+                    <div class="sub-metric-value" id="calcDealsCount">3.4 сделки</div>
+                  </div>
+                  <div class="sub-metric-card">
+                    <div class="sub-metric-label">RPC (доход с 1 контакта)</div>
+                    <div class="sub-metric-value" id="calcRpcValue">804 ₽</div>
+                  </div>
+                  <div class="sub-metric-card">
+                    <div class="sub-metric-label">Бонус от кросс-продаж</div>
+                    <div class="sub-metric-value" id="calcCrossSellBonus">0 ₽</div>
+                  </div>
+                  <div class="sub-metric-card">
+                    <div class="sub-metric-label">Срок закрытия сделки</div>
+                    <div class="sub-metric-value">14–35 дней</div>
+                  </div>
+                </div>
+
+                <p class="calc-footnote">
+                  *Расчет основан на юнит-экономике строительного ритейла и чеках домов «АТС Малиновка» 11–17 млн ₽ (до 680 000 ₽ с продажи дома в КП «Елизаветинское») при фиксированной комиссии 4%. Выплаты производятся безналичным переводом на расчетный счет партнера.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           СЛАЙД 9: 08 · WIN-WIN ЭФФЕКТ БУМЕРАНГА
+           ==================================================================== -->
+      <section class="slide" data-index="8">
+        <div class="slide-container">
+          <span class="tag-pill green">Круговорот выручки</span>
+          <h2 class="slide-heading">Эффект бумеранга: <em>100% средств</em> возвращаются в «Материк»</h2>
+          <p class="slide-lead">
+            Партнерство формирует замкнутую экосистему взаимной выгоды. Вы не только получаете комиссию 4%, но и возвращаете покупателя в свои торговые залы с чеком на миллионы рублей.
+          </p>
+
+          <div class="boomerang-grid">
+            <div class="boomerang-step-card">
+              <span class="step-num-badge blue">1</span>
+              <h4 class="step-title">Рекомендация «Материка»</h4>
+              <p class="step-desc">Покупатель стройматериалов получает сертификат на стойке гипермаркета или переходит по таргетированной рассылке.</p>
+            </div>
+
+            <div class="boomerang-step-card">
+              <span class="step-num-badge">2</span>
+              <h4 class="step-title">Сделка с Малиновкой</h4>
+              <p class="step-desc">Клиент приобретает участок или заключает договор подряда. Мы перечисляем «Материку» до 680 000 ₽ комиссии на расчетный счет.</p>
+            </div>
+
+            <div class="boomerang-step-card">
+              <span class="step-num-badge blue">3</span>
+              <h4 class="step-title">Сертификат новосёла</h4>
+              <p class="step-desc">«АТС Малиновка» дарит каждому покупателю подарочный сертификат на 100 000 ₽ на закупку товаров строго в гипермаркетах «Материк».</p>
+            </div>
+
+            <div class="boomerang-step-card">
+              <span class="step-num-badge">4</span>
+              <h4 class="step-title">Закупка на 2–5 млн ₽</h4>
+              <p class="step-desc">Новосел и строительный подрядчик закупают весь объем материалов для дома, забора, сада и чистовой отделки в сети «Материк».</p>
+            </div>
+          </div>
+
+          <!-- Выделенный блок сертификата новосёла -->
+          <div class="certificate-highlight-box">
+            <div class="cert-left">
+              <div class="cert-icon">🎁</div>
+              <div>
+                <div class="cert-title">Именной подарочный сертификат «Материк × Малиновка»</div>
+                <div class="cert-desc">
+                  В каждый договор купли-продажи мы интегрируем сертификат на закупку товаров исключительно в гипермаркетах «Материк». Клиент гарантированно вернется к вам.
+                </div>
+              </div>
+            </div>
+            <div class="cert-badge-value">100 000 ₽</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           СЛАЙД 10: 09 · ДОРОЖНАЯ КАРТА И СЛЕДУЮЩИЙ ШАГ
+           ==================================================================== -->
+      <section class="slide" data-index="9">
+        <div class="slide-container">
+          <span class="tag-pill">План запуска</span>
+          <h2 class="slide-heading">Быстрый старт пилота <em>за 14–21 день</em></h2>
+          <p class="slide-lead">
+            Четкая и понятная дорожная карта интеграции без изменения внутренних бизнес-процессов и операционных регламентов сети «Материк».
+          </p>
+
+          <div class="grid-cards grid-4">
+            <div class="card-box">
+              <div class="step-num-badge blue">1</div>
+              <h4 class="card-title" style="font-size: 1.1rem;">Дни 1–4 · Агентский договор</h4>
+              <p class="card-desc">
+                Согласование агентского договора с юридической службой «Материка». Фиксация ставки комиссии 4% и порядка взаиморасчётов.
+              </p>
+            </div>
+
+            <div class="card-box">
+              <div class="step-num-badge">2</div>
+              <h4 class="card-title" style="font-size: 1.1rem;">Дни 5–9 · Доступы к MalinaFix</h4>
+              <p class="card-desc">
+                Подключение личного кабинета партнёра в системе MalinaFix. Выдача доступов менеджерам для прозрачной фиксации обращений.
+              </p>
+            </div>
+
+            <div class="card-box">
+              <div class="step-num-badge blue">3</div>
+              <h4 class="card-title" style="font-size: 1.1rem;">Дни 10–15 · Стойки и материалы</h4>
+              <p class="card-desc">
+                Согласование брендированных стоек и рекламных материалов. Подготовка полиграфии о посёлках и подарочных сертификатов.
+              </p>
+            </div>
+
+            <div class="card-box">
+              <div class="step-num-badge">4</div>
+              <h4 class="card-title" style="font-size: 1.1rem;">Дни 16–21 · Пилотный запуск</h4>
+              <p class="card-desc">
+                Тестовый запуск в согласованных гипермаркетах сети или пробное информирование покупателей по выбранным каналам.
+              </p>
+            </div>
+          </div>
+
+          <!-- Блок контактов и прямого призыва к действию -->
+          <div class="card-box" style="margin-top: 20px; background: linear-gradient(135deg, #FFFFFF 0%, #FAF7F2 100%); border: 2px solid var(--ats-primary);">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                  <span class="tag-pill" style="margin-bottom: 0;">Контакты дирекции</span>
+                  <span style="font-size: 0.8rem; color: var(--ats-text-secondary); font-weight: 500;">Девелоперская компания «АТС Малиновка»</span>
+                </div>
+                <h3 style="font-family: var(--font-heading); font-size: 1.45rem; font-weight: 700; color: var(--ats-text); margin-bottom: 4px;">
+                  Готовы к согласованию и запуску пилотного проекта
+                </h3>
+                <p style="font-size: 0.88rem; color: var(--ats-text-secondary); margin: 0;">
+                  Санкт-Петербург, Гражданский пр. 26 офис 4А-6 (4 этаж) · Телефон: <strong><a href="tel:+78122700700" style="color: inherit; text-decoration: none;">+7(812)2-700-700</a></strong> · Email: <strong><a href="mailto:atsmalinovka@yandex.ru" style="color: inherit; text-decoration: none;">atsmalinovka@yandex.ru</a></strong>
+                </p>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <a href="tel:+78122700700" class="btn-secondary" style="text-decoration: none;">
+                  <span>Позвонить</span>
+                </a>
+                <button type="button" class="btn-primary" onclick="window.presentationSlider.goTo(7)">
+                  <span>Рассчитать доход →</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       НИЖНЯЯ ПАНЕЛЬ УПРАВЛЕНИЯ (BOTTOMBAR)
+       ======================================================================== -->
+  <footer class="bottombar">
+    <div class="bottombar-left">
+      <!-- Счетчик текущего слайда -->
+      <span class="slide-counter-badge" id="slideCounter">01 / 10</span>
+
+      <!-- Индикаторы точек слайдов -->
+      <div class="bottombar-dots" id="dotsContainer"></div>
+    </div>
+
+    <div class="bottombar-right">
+      <span class="keyboard-hint">
+        <kbd style="padding: 2px 6px; background: #FFF; border: 1px solid var(--ats-border); border-radius: 4px; font-family: var(--font-mono); font-size: 0.7rem;">←</kbd>
+        <kbd style="padding: 2px 6px; background: #FFF; border: 1px solid var(--ats-border); border-radius: 4px; font-family: var(--font-mono); font-size: 0.7rem;">→</kbd>
+        <span>Клавиатура / Свайп для навигации</span>
+      </span>
+
+      <button type="button" class="btn-nav-action" id="btnPrev" disabled>
+        <span>← Назад</span>
+      </button>
+
+      <button type="button" class="btn-nav-action primary" id="btnNext">
+        <span>Далее →</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       МОДАЛЬНОЕ ОКНО: ОГЛАВЛЕНИЕ СЛАЙДОВ (DRAWER)
+       ======================================================================== -->
+  <div class="modal-overlay" id="drawerModal">
+    <div class="drawer-content">
+      <div class="drawer-header">
+        <h3 class="drawer-title">Содержание презентации</h3>
+        <button type="button" class="drawer-close-btn" id="btnCloseDrawer" aria-label="Закрыть">&times;</button>
+      </div>
+      <!-- Список слайдов генерируется PresentationSlider.buildDrawer() -->
+      <div class="drawer-list" id="drawerList"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       МОДАЛЬНОЕ ОКНО: ЛАЙТБОКС ДЛЯ СКРИНШОТОВ MALINAFIX
+       ======================================================================== -->
+  <div class="modal-overlay" id="lightboxModal">
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-img" id="lightboxImg">
+      <div class="lightbox-bar">
+        <span id="lightboxCaption" style="font-size: 0.85rem; color: var(--ats-text-secondary); font-weight: 500;"></span>
+        <button type="button" class="drawer-close-btn" id="btnCloseLightbox" aria-label="Закрыть" style="font-size: 1.2rem;">&times;</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Движок интерактивной презентации -->
+  <script src="app.js"></script>
+</body>
+</html>
