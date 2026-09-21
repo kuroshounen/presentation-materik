@@ -44,7 +44,10 @@ def verify():
     required_in_html = [
         "680 000 ₽", "680000", "17 000 000 ₽",
         "Следующий этап", "от контрагентов", "партнёрам",
-        "sawoda-facade.jpg", "sawoda-interior.jpg", "sawoda-terrace.jpg",
+        'sawoda-facade.jpg',
+        'sawoda-interior.jpg',
+        'sawoda-terrace-v3.png',
+        'favicon.svg',
         "Гражданский пр. 26 офис 4А-6 (4 этаж)", "+7(812)2-700-700", "atsmalinovka@yandex.ru",
         "14–21 день",
         "Согласование брендированных стоек и рекламных материалов"
