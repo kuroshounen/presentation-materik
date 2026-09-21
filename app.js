@@ -38,12 +38,25 @@ class HeroNetworkCanvas {
       this.mouse.active = false;
     });
 
-    this.canvas.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) {
+    window.addEventListener('blur', () => {
+      this.mouse.active = false;
+    });
+
+    const updateTouch = (e) => {
+      if (e.touches && e.touches.length > 0) {
         this.mouse.x = e.touches[0].clientX;
         this.mouse.y = e.touches[0].clientY;
         this.mouse.active = true;
       }
+    };
+
+    this.canvas.addEventListener('touchstart', updateTouch, { passive: true });
+    this.canvas.addEventListener('touchmove', updateTouch, { passive: true });
+    this.canvas.addEventListener('touchend', () => {
+      this.mouse.active = false;
+    }, { passive: true });
+    this.canvas.addEventListener('touchcancel', () => {
+      this.mouse.active = false;
     }, { passive: true });
 
     this.createNodes();
@@ -96,6 +109,7 @@ class HeroNetworkCanvas {
   animate() {
     this.ctx.clearRect(0, 0, this.width, this.height);
 
+    // 1. Обновление координат узлов и физики взаимодействия с курсором
     for (let i = 0; i < this.nodes.length; i++) {
       const node = this.nodes[i];
 
@@ -105,20 +119,33 @@ class HeroNetworkCanvas {
       if (node.x < 0 || node.x > this.width) node.vx *= -1;
       if (node.y < 0 || node.y > this.height) node.vy *= -1;
 
-      // Плавная гравитация к курсору/тачу без дребезга (jitter)
+      // Плавная гравитация к курсору/тачу без дребезга (jitter) и без залипания:
+      // При приближении сила плавно затухает (exponential ease), исключая скачки через 0,
+      // а при удалении (dot <= 0) частица свободно продолжает путь без сопротивления
       if (this.mouse.active) {
         const dx = this.mouse.x - node.x;
         const dy = this.mouse.y - node.y;
         const dist = Math.hypot(dx, dy);
-        if (dist < 190 && dist > 0.5) {
-          const force = Math.sin((dist / 190) * Math.PI);
-          const step = Math.min(force * 2.2, dist * 0.12);
-          node.x += (dx / dist) * step;
-          node.y += (dy / dist) * step;
+
+        if (dist < 190 && dist > 0.001) {
+          const dot = (node.vx * dx + node.vy * dy) / dist;
+          if (dot > 0) {
+            const normDist = dist / 190;
+            const force = Math.sin(normDist * Math.PI);
+            const ease = 1 - Math.exp(-dist / 35);
+            const step = Math.min(force * 1.6 * ease, dist * 0.15);
+
+            node.x += (dx / dist) * step;
+            node.y += (dy / dist) * step;
+          }
         }
       }
+    }
 
-      // Отрисовка силовых линий между узлами
+    // 2. Отрисовка силовых линий между синхронизированными узлами
+    for (let i = 0; i < this.nodes.length; i++) {
+      const node = this.nodes[i];
+
       for (let j = i + 1; j < this.nodes.length; j++) {
         const other = this.nodes[j];
         const dist = Math.hypot(node.x - other.x, node.y - other.y);
@@ -141,7 +168,7 @@ class HeroNetworkCanvas {
         }
       }
 
-      // Узел
+      // Отрисовка узла
       this.ctx.beginPath();
       this.ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
       this.ctx.fillStyle = node.color;
